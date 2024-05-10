@@ -21,13 +21,9 @@ resource "github_team_repository" "admins" {
   }
 }
 
-# data "github_team" "nit_admin" {
-#   slug = "nit"
-# }
-
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository
 resource "github_team_repository" "nit_admin" {
-  team_id    = lookup(local.github_teams, "nit")
+  team_id    = lookup(local.github_teams, "terraform-reviewers")
   repository = github_repository.repo.name
   permission = "admin"
   lifecycle {
