@@ -22,7 +22,7 @@ resource "github_team_repository" "admins" {
 }
 
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team_repository
-resource "github_team_repository" "nit_admin" {
+resource "github_team_repository" "admin" {
   team_id    = lookup(local.github_teams, "terraform-reviewers")
   repository = github_repository.repo.name
   permission = "admin"
