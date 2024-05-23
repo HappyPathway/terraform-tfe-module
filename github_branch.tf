@@ -6,7 +6,7 @@
 
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_default
 resource "github_branch_default" "default_main_branch" {
-  repository = github_repository.repo.name
+  repository = local.github_repo.name
   branch     = var.github_default_branch
   lifecycle {
     ignore_changes = [
@@ -22,8 +22,8 @@ locals {
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
 resource "github_branch_protection" "main" {
   enforce_admins = var.github_enforce_admins_branch_protection
-  pattern        = github_repository.repo.default_branch
-  repository_id  = github_repository.repo.node_id
+  pattern        = local.github_repo.default_branch
+  repository_id  = local.github_repo.node_id
   required_pull_request_reviews {
     dismiss_stale_reviews           = var.github_dismiss_stale_reviews
     require_code_owner_reviews      = var.github_require_code_owner_reviews

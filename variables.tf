@@ -129,3 +129,9 @@ variable "org_admin_user" {
 variable "oauth_service_provider" {
   default = "github"
 }
+
+variable github_create_repo {
+  type = bool
+  default = true
+  description = "Should we create the new repo, or does it already exist?"
+}

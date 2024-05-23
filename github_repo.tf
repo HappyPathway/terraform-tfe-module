@@ -1,4 +1,5 @@
 resource "github_repository" "repo" {
+  count                  = var.github_create_repo ? 1 : 0
   name                   = var.name
   description            = var.github_repo_description
   visibility             = var.github_is_private ? "private" : "public"
@@ -27,4 +28,13 @@ resource "github_repository" "repo" {
       repository = var.template_repo
     }
   }
+}
+
+data github_repository repo {
+  count                  = var.github_create_repo ? 0 : 1
+  name                   = var.name
+}
+
+locals {
+  github_repo = var.github_create_repo ? github_repository.repo : data.github_repository.repo
 }
