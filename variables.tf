@@ -135,3 +135,8 @@ variable github_create_repo {
   default = true
   description = "Should we create the new repo, or does it already exist?"
 }
+
+variable use_tags {
+  default = true
+  description = "Will new tags trigger new module versions"
+}
