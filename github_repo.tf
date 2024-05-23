@@ -36,5 +36,5 @@ data github_repository repo {
 }
 
 locals {
-  github_repo = var.github_create_repo ? github_repository.repo : data.github_repository.repo
+  github_repo = var.github_create_repo ? one(github_repository.repo) : one(data.github_repository.repo)
 }
