@@ -130,13 +130,23 @@ variable "oauth_service_provider" {
   default = "github"
 }
 
-variable github_create_repo {
-  type = bool
-  default = true
+variable "github_create_repo" {
+  type        = bool
+  default     = true
   description = "Should we create the new repo, or does it already exist?"
 }
 
-variable use_tags {
-  default = true
+variable "use_tags" {
+  default     = true
   description = "Will new tags trigger new module versions"
+}
+
+variable "public_organization" {
+  default     = null
+  description = "Public Organization"
+}
+
+variable "public_module" {
+  default     = false
+  description = "Is this a public module?"
 }

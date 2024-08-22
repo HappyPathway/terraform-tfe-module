@@ -30,9 +30,9 @@ resource "github_repository" "repo" {
   }
 }
 
-data github_repository repo {
-  count                  = var.github_create_repo ? 0 : 1
-  name                   = var.name
+data "github_repository" "repo" {
+  count = var.github_create_repo ? 0 : 1
+  name  = var.name
 }
 
 locals {
