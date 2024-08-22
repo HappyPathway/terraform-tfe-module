@@ -21,11 +21,4 @@ resource "tfe_registry_module" "public-registry-module" {
   module_provider = split("-", var.name)[1]
   name            = join("-", slice(split("-", var.name), 2, length(split("-", var.name))))
   registry_name   = "public"
-  vcs_repo {
-    display_identifier = local.github_repo.full_name
-    identifier         = local.github_repo.full_name
-    oauth_token_id     = local.oauth_token_id
-    tags               = var.use_tags ? var.use_tags : null
-  }
-  depends_on = [github_repository.repo]
 }
