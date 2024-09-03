@@ -28,4 +28,4 @@ jobs:
       github_username: ${github_username}
       github_email: ${github_email}
     secrets:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: $${{ secrets.GH_TOKEN }}
