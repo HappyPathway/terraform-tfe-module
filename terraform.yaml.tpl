@@ -29,3 +29,24 @@ jobs:
       github_email: ${{ vars.GH_EMAIL }}}
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+name: "ModTest"
+
+on:
+  pull_request:
+    branches:
+      - main
+    
+jobs:
+  modtest:
+    uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@main
+    with:
+       workspace: github-repos
+       github_server: github.com 
+       github_org:  ${{ github.repository_owner }} 
+       mod_source: repo/github
+       branch: ${{ github.head_ref }}
+       terraform_version: 1.9.1
+    secrets:
+      TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}

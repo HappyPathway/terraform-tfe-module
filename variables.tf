@@ -161,3 +161,8 @@ variable "github_actions" {
   })
   default = null
 }
+
+
+variable "target_workspaces" {
+  type = list(string)
+}

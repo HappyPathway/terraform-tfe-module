@@ -32,17 +32,3 @@ resource "github_repository_file" "extra_files" {
 }
 
 
-resource "github_repository_file" "github_actions" {
-  count               = var.github_actions == null ? 0 : 1
-  repository          = local.github_repo.name
-  branch              = var.github_default_branch
-  file                = ".github/workflows/terraform.yaml"
-  content             = file("${path.module}/terraform.yaml.tpl")
-  overwrite_on_create = true
-  lifecycle {
-    ignore_changes = [
-      content,
-      branch
-    ]
-  }
-}
