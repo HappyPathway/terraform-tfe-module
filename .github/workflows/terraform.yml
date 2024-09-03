@@ -1,84 +1,31 @@
-name: "Terraform"
+name: "Gtag"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-  pull_request:
-
+    
 jobs:
   terraform:
-    name: "Terraform FMT and Validation"
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.GHE_TOKEN }}
-          
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    uses: HappyPathway/centralized-actions/.github/workflows/terraform-test.yml@main
+    with:
+      terraform_version: 1.9.1
+      terraform_api: app.terraform.io
+      github_username: ${{ github.actor }}
+      github_email: ${{ github.actor }}@roknsound.com
+      github_org: ${{ inputs.GH_ORG }}
+    secrets:
+      TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: ${{ vars.terraform_version }}
-          cli_config_credentials_token: ${{ secrets.TFE_TOKEN }}
-          cli_config_credentials_hostname: app.terraform.io
-
-      - name: Terraform Format
-        id: fmt
-        run: |
-          terraform fmt
-          if ! git diff-index --quiet HEAD; then 
-            git config --global user.name '${{ vars.org_admin_user }}'
-            git config --global user.email '${{ vars.org_admin_user }}@${{ vars.org_domain }}.com'
-            git commit -am "Autoformatting TF Code"
-            git push
-            echo "auto_format=true" >> $GITHUB_ENV 
-          fi
-
-      - name: Autoformat Halt
-        if: env.auto_format == 'true'
-        run: exit 1
-        
-      - name: Terraform Init
-        id: init
-        run: terraform init
-      
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
-
-      - name: Update Pull Request
-        uses: actions/github-script@v6
-        if: github.event_name == 'pull_request'
-        with:
-          github-token: ${{ secrets.GHE_TOKEN }}
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
-            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
-
-      - name: Terraform Init Status
-        if: steps.init.outcome == 'failure'
-        run: exit 1
-
-      - name: Terraform FMT Status
-        if: steps.fmt.outcome == 'failure'
-        run: exit 1
-
-      - name: Terraform Validate Status
-        if: steps.validate.outcome == 'failure'
-        run: exit 1
+  gtag:
+    needs: terraform
+    uses: HappyPathway/centralized-actions/.github/workflows/gtag.yml@main
+    with:
+      patch: true
+      github_org: HappyPathway
+      github_username: djaboxx
+      github_email: dave@roknsound.com
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
