@@ -29,6 +29,7 @@ No modules.
 | [github_repository_file.codeowners](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.extra_files](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.github_actions](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_file.modtest_target_workspaces](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_team_repository.admin](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
 | [github_team_repository.admins](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
 | [tfe_registry_module.public-registry-module](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/registry_module) | resource |
@@ -72,6 +73,7 @@ No modules.
 | <a name="input_public_organization"></a> [public\_organization](#input\_public\_organization) | Public Organization | `any` | `null` | no |
 | <a name="input_pull_request_bypassers"></a> [pull\_request\_bypassers](#input\_pull\_request\_bypassers) | n/a | `list(any)` | `[]` | no |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | Github Action Secrets | <pre>list(object({<br>    name  = string,<br>    value = string<br>  }))</pre> | `[]` | no |
+| <a name="input_target_workspaces"></a> [target\_workspaces](#input\_target\_workspaces) | n/a | `list(string)` | n/a | yes |
 | <a name="input_template_repo"></a> [template\_repo](#input\_template\_repo) | n/a | `any` | `null` | no |
 | <a name="input_template_repo_org"></a> [template\_repo\_org](#input\_template\_repo\_org) | n/a | `string` | `"HappyPathway"` | no |
 | <a name="input_use_tags"></a> [use\_tags](#input\_use\_tags) | Will new tags trigger new module versions | `bool` | `true` | no |
