@@ -9,7 +9,7 @@ on:
 jobs:
   terraform:
     name: "Terraform FMT and Validation"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
