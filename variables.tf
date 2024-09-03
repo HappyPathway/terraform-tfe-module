@@ -151,13 +151,13 @@ variable "public_module" {
   description = "Is this a public module?"
 }
 
-variable github_actions {
+variable "github_actions" {
   type = object({
-      username          = string
-      email             = string
-      org               = string
-      terraform_version = optional(string, "1.9.1")
-      terraform_api     = optional(string, "app.terraform.io")
-    })
+    username          = string
+    email             = string
+    org               = string
+    terraform_version = optional(string, "1.9.1")
+    terraform_api     = optional(string, "app.terraform.io")
+  })
   default = null
 }

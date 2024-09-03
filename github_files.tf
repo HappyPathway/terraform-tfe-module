@@ -33,11 +33,11 @@ resource "github_repository_file" "extra_files" {
 
 
 resource "github_repository_file" "github_actions" {
-  count = var.github_actions == null ? 0 : 1
-  repository          = local.github_repo.name
-  branch              = var.github_default_branch
-  file                = ".github/workflows/terraform.yaml"
-  content             = templatefile(
+  count      = var.github_actions == null ? 0 : 1
+  repository = local.github_repo.name
+  branch     = var.github_default_branch
+  file       = ".github/workflows/terraform.yaml"
+  content = templatefile(
     "${path.module}/templates/terraform.yaml.tpl",
     {
       github_username   = var.github_actions.username
