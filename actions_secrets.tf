@@ -9,15 +9,15 @@ locals {
   vars = concat(var.vars,
     var.github_actions == null ? [] : [
       {
-        name  = "GITHUB_USERNAME"
+        name  = "GH_USERNAME"
         value = var.github_actions.username
       },
       {
-        name  = "GITHUB_EMAIL"
+        name  = "GH_EMAIL"
         value = var.github_actions.email
       },
       {
-        name  = "GITHUB_ORG"
+        name  = "GH_ORG"
         value = var.github_actions.org
       },
       {
