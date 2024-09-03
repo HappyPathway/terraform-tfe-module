@@ -28,6 +28,7 @@ No modules.
 | [github_repository.repo](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository) | resource |
 | [github_repository_file.codeowners](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.extra_files](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
+| [github_repository_file.github_actions](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_team_repository.admin](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
 | [github_team_repository.admins](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/team_repository) | resource |
 | [tfe_registry_module.public-registry-module](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/registry_module) | resource |
@@ -42,6 +43,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_codeowners"></a> [additional\_codeowners](#input\_additional\_codeowners) | Enable adding of Codeowner Teams | `list(any)` | `[]` | no |
 | <a name="input_extra_files"></a> [extra\_files](#input\_extra\_files) | Extra Files | <pre>list(object({<br>    path    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
+| <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>  })</pre> | `null` | no |
 | <a name="input_github_allow_merge_commit"></a> [github\_allow\_merge\_commit](#input\_github\_allow\_merge\_commit) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_rebase_merge"></a> [github\_allow\_rebase\_merge](#input\_github\_allow\_rebase\_merge) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_squash_merge"></a> [github\_allow\_squash\_merge](#input\_github\_allow\_squash\_merge) | n/a | `bool` | `true` | no |
