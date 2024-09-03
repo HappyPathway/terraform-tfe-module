@@ -5,8 +5,33 @@ resource "github_actions_secret" "secret" {
   repository      = local.github_repo.name
 }
 
+locals {
+  vars = concat(var.vars,
+    var.github_actions == null ? [] : [
+      {
+        name  = "GITHUB_USERNAME"
+        value = var.github_actions.username
+      },
+      {
+        name  = "GITHUB_EMAIL"
+        value = var.github_actions.email
+      },
+      {
+        name  = "GITHUB_ORG"
+        value = var.github_actions.org
+      },
+      {
+        name  = "TERRAFORM_VERSION"
+        value = var.github_actions.terraform_version
+      },
+      {
+        name  = "TERRAFORM_API"
+        value = var.github_actions.terraform_api
+      }
+  ])
+}
 resource "github_actions_variable" "variable" {
-  for_each      = tomap({ for _var in var.vars : _var.name => _var.value })
+  for_each      = tomap({ for _var in local.vars : _var.name => _var.value })
   repository    = local.github_repo.name
   variable_name = each.key
   value         = each.value

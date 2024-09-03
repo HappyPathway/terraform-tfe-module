@@ -33,20 +33,11 @@ resource "github_repository_file" "extra_files" {
 
 
 resource "github_repository_file" "github_actions" {
-  count      = var.github_actions == null ? 0 : 1
-  repository = local.github_repo.name
-  branch     = var.github_default_branch
-  file       = ".github/workflows/terraform.yaml"
-  content = templatefile(
-    "${path.module}/templates/terraform.yaml.tpl",
-    {
-      github_username   = var.github_actions.username
-      github_email      = var.github_actions.email
-      github_org        = var.github_actions.org
-      terraform_version = var.github_actions.terraform_version
-      terraform_api     = var.github_actions.terraform_api
-    }
-  )
+  count               = var.github_actions == null ? 0 : 1
+  repository          = local.github_repo.name
+  branch              = var.github_default_branch
+  file                = ".github/workflows/terraform.yaml"
+  content             = file("${path.module}/terraform.yaml.tpl")
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
