@@ -10,7 +10,7 @@ variable "github_codeowners_team" {
 }
 
 variable "github_repo_description" {
-  default = "Terraform Workspace"
+  default = "Terraform Module"
 }
 
 variable "github_repo_topics" {
