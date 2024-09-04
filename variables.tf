@@ -185,3 +185,8 @@ variable "create_registry_module" {
   type    = bool
   default = true
 }
+
+variable "mod_source" {
+  type    = string
+  default = null
+}

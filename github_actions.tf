@@ -13,6 +13,10 @@ resource "github_repository_file" "github_actions" {
   }
 }
 
+locals {
+  mod_source = var.create_registry_module ? "${one(tfe_registry_module.registry-module).name}/${one(tfe_registry_module.registry-module).module_provider}" : var.mod_source
+}
+
 resource "github_repository_file" "modtest_target_workspaces" {
   for_each   = var.modtest ? tomap({ for workspace in var.target_workspaces : workspace.workspace => workspace }) : tomap({})
   repository = local.github_repo.name
@@ -22,7 +26,7 @@ resource "github_repository_file" "modtest_target_workspaces" {
     "${path.module}/templates/target_workspace.yaml",
     {
       workspace        = each.value.workspace,
-      mod_source       = "${one(tfe_registry_module.registry-module).name}/${one(tfe_registry_module.registry-module).module_provider}"
+      mod_source       = local.mod_source
       workspace_repo   = each.value.workspace_repo
       workspace_branch = each.value.workspace_branch
       repo_clone_type  = each.value.repo_clone_type
