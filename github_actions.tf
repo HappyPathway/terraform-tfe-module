@@ -22,7 +22,7 @@ resource "github_repository_file" "modtest_target_workspaces" {
     "${path.module}/templates/target_workspace.yaml",
     {
       workspace        = each.value.workspace,
-      mod_source       = "${tfe_registry_module.registry-module.name}/${tfe_registry_module.registry-module.module_provider}"
+      mod_source       = "${one(tfe_registry_module.registry-module).name}/${one(tfe_registry_module.registry-module).module_provider}"
       workspace_repo   = each.value.workspace_repo
       workspace_branch = each.value.workspace_branch
       repo_clone_type  = each.value.repo_clone_type

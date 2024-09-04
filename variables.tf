@@ -180,3 +180,8 @@ variable "modtest" {
   type    = bool
   default = false
 }
+
+variable "create_registry_module" {
+  type    = bool
+  default = true
+}

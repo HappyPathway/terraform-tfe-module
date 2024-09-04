@@ -3,6 +3,7 @@ locals {
 }
 
 resource "tfe_registry_module" "registry-module" {
+  count = var.create_registry_module ? 1 : 0
   vcs_repo {
     display_identifier = local.github_repo.full_name
     identifier         = local.github_repo.full_name
