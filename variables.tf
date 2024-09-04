@@ -164,5 +164,6 @@ variable "github_actions" {
 
 
 variable "target_workspaces" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
