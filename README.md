@@ -44,7 +44,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_codeowners"></a> [additional\_codeowners](#input\_additional\_codeowners) | Enable adding of Codeowner Teams | `list(any)` | `[]` | no |
 | <a name="input_extra_files"></a> [extra\_files](#input\_extra\_files) | Extra Files | <pre>list(object({<br>    path    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
-| <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>  })</pre> | `null` | no |
+| <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>    token             = optional(string)<br>    tfe_token         = optional(string)<br>    server            = optional(string)<br>  })</pre> | `null` | no |
 | <a name="input_github_allow_merge_commit"></a> [github\_allow\_merge\_commit](#input\_github\_allow\_merge\_commit) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_rebase_merge"></a> [github\_allow\_rebase\_merge](#input\_github\_allow\_rebase\_merge) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_squash_merge"></a> [github\_allow\_squash\_merge](#input\_github\_allow\_squash\_merge) | n/a | `bool` | `true` | no |
@@ -74,7 +74,7 @@ No modules.
 | <a name="input_public_organization"></a> [public\_organization](#input\_public\_organization) | Public Organization | `any` | `null` | no |
 | <a name="input_pull_request_bypassers"></a> [pull\_request\_bypassers](#input\_pull\_request\_bypassers) | n/a | `list(any)` | `[]` | no |
 | <a name="input_secrets"></a> [secrets](#input\_secrets) | Github Action Secrets | <pre>list(object({<br>    name  = string,<br>    value = string<br>  }))</pre> | `[]` | no |
-| <a name="input_target_workspaces"></a> [target\_workspaces](#input\_target\_workspaces) | n/a | `list(string)` | `[]` | no |
+| <a name="input_target_workspaces"></a> [target\_workspaces](#input\_target\_workspaces) | n/a | <pre>list(object({<br>    workspace_repo   = string<br>    workspace_branch = string<br>    workspace        = string<br>    repo_clone_type  = string<br>  }))</pre> | `[]` | no |
 | <a name="input_template_repo"></a> [template\_repo](#input\_template\_repo) | n/a | `any` | `null` | no |
 | <a name="input_template_repo_org"></a> [template\_repo\_org](#input\_template\_repo\_org) | n/a | `string` | `"HappyPathway"` | no |
 | <a name="input_use_tags"></a> [use\_tags](#input\_use\_tags) | Will new tags trigger new module versions | `bool` | `true` | no |
