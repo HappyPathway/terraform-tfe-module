@@ -7,7 +7,6 @@ resource "github_repository_file" "github_actions" {
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
-      content,
       branch
     ]
   }
@@ -35,7 +34,6 @@ resource "github_repository_file" "modtest_target_workspaces" {
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
-      content,
       branch
     ]
   }
