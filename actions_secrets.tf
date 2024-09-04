@@ -7,7 +7,7 @@ resource "github_actions_secret" "secret" {
 
 locals {
   vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
-    var.github_actions == null ? [] : [
+    [
       {
         name  = "GH_USERNAME"
         value = var.github_actions.username
