@@ -11,6 +11,7 @@ jobs:
       workspace: ${workspace}
       workspace_repo: ${workspace_repo}
       workspace_branch: ${workspace_branch}
+      branch: $${{ github.head_ref }}
       repo_clone_type: ${repo_clone_type}
       mod_source: ${mod_source}
 
