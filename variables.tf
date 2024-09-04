@@ -167,3 +167,8 @@ variable "target_workspaces" {
   type    = list(string)
   default = []
 }
+
+variable "modtest" {
+  type    = bool
+  default = false
+}

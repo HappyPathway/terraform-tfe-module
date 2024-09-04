@@ -14,7 +14,7 @@ resource "github_repository_file" "github_actions" {
 }
 
 resource "github_repository_file" "modtest_target_workspaces" {
-  for_each   = toset(var.target_workspaces)
+  for_each   = var.modtest ? toset(var.target_workspaces) : toset([])
   repository = local.github_repo.name
   branch     = var.github_default_branch
   file       = ".github/workflows/modtest-${each.value}.yaml"
