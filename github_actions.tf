@@ -14,14 +14,14 @@ resource "github_repository_file" "github_actions" {
 }
 
 resource "github_repository_file" "modtest_target_workspaces" {
-  for_each   = var.modtest ? toset(var.target_workspaces) : toset([])
+  for_each   = var.modtest ? tomap({ for workspace in var.target_workspaces : workspace.workspace => workspace }) : tomap({})
   repository = local.github_repo.name
   branch     = var.github_default_branch
   file       = ".github/workflows/modtest-${each.value}.yaml"
   content = templatefile(
     "${path.module}/templates/target_workspace.yaml",
     {
-      workspace        = each.value,
+      workspace        = each.value.workspace,
       mod_source       = "${tfe_registry_module.registry-module.name}/${tfe_registry_module.registry-module.module_provider}"
       workspace_repo   = each.value.workspace_repo
       workspace_branch = each.value.workspace_branch
