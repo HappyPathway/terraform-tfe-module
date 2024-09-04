@@ -5,7 +5,7 @@ on:
     
 jobs:
   modtest:
-    if : ${{ github.event_name }} == "pull_request"
+    if : $${{ github.event_name }} == "pull_request"
     uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@main
     with:
       workspace: ${workspace}
