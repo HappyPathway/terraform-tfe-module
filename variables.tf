@@ -158,6 +158,9 @@ variable "github_actions" {
     org               = string
     terraform_version = optional(string, "1.9.1")
     terraform_api     = optional(string, "app.terraform.io")
+    token             = optional(string)
+    tfe_token         = optional(string)
+    server            = optional(string)
   })
   default = null
 }

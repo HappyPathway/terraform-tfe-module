@@ -6,16 +6,29 @@ resource "github_actions_secret" "secret" {
 }
 
 locals {
-  vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
+  secrets = var.target_workspaces == [] ? var.secrets : concat(var.secrets,
+    lookup(var.github_actions, "token", null) == null ? [] :
     [
       {
         name  = "GH_TOKEN"
         value = var.github_actions.token
-      },
+      }
+    ],
+    lookup(var.github_actions, "tfe_token", null) == null ? [] : [
+      {
+        name  = "TFE_TOKEN"
+        value = var.github_actions.server
+      }
+    ]
+  )
+  vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
+    lookup(var.github_actions, "server", null) == null ? [] : [
       {
         name  = "GITHUB_SERVER"
         value = var.github_actions.server
-      },
+      }
+    ],
+    [
       {
         name  = "GH_USERNAME"
         value = var.github_actions.username
@@ -40,7 +53,8 @@ locals {
         name  = "TERRAFORM_API_TOKEN_NAME"
         value = replace(var.github_actions.terraform_api, ".", "_")
       }
-  ])
+    ]
+  )
 }
 resource "github_actions_variable" "variable" {
   for_each      = var.modtest ? tomap({ for _var in local.vars : _var.name => _var.value }) : tomap({})
