@@ -17,7 +17,7 @@ resource "github_repository_file" "modtest_target_workspaces" {
   for_each   = var.modtest ? tomap({ for workspace in var.target_workspaces : workspace.workspace => workspace }) : tomap({})
   repository = local.github_repo.name
   branch     = var.github_default_branch
-  file       = ".github/workflows/modtest-${each.value}.yaml"
+  file       = ".github/workflows/modtest-${each.value.workspace}.yaml"
   content = templatefile(
     "${path.module}/templates/target_workspace.yaml",
     {
