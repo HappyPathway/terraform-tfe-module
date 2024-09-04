@@ -9,6 +9,14 @@ locals {
   vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
     var.github_actions == null ? [] : [
       {
+        name  = "GH_TOKEN"
+        value = var.github_actions.token
+      },
+      {
+        name  = "GITHUB_SERVER"
+        value = var.github_actions.server
+      },
+      {
         name  = "GH_USERNAME"
         value = var.github_actions.username
       },
@@ -27,6 +35,10 @@ locals {
       {
         name  = "TERRAFORM_API"
         value = var.github_actions.terraform_api
+      },
+      {
+        name  = "TERRAFORM_API_TOKEN_NAME"
+        value = replace(var.github_actions.terraform_api, ".", "_")
       }
   ])
 }

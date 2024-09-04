@@ -164,6 +164,16 @@ variable "github_actions" {
 
 
 variable "target_workspaces" {
-  type    = list(string)
+  type = list(object({
+    workspace_repo   = string
+    workspace_branch = string
+    workspace        = string
+    repo_clone_type  = string
+  }))
   default = []
+}
+
+variable "repo_clone_type" {
+  type    = string
+  default = "https"
 }
