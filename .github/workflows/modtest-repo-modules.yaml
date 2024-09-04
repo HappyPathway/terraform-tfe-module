@@ -1,17 +1,16 @@
 name: "ModTest: repo-modules"
 
 on:
-  workflow_dispatch:
   pull_request:
     
 jobs:
   modtest:
+    if : ${{ github.event_name }} == "pull_request"
     uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@main
     with:
       workspace: repo-modules
       workspace_repo: repo-modules
       workspace_branch: main
-      branch: ${{ github.head_ref }}
       repo_clone_type: https
       mod_source: module/tfe
 
