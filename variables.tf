@@ -173,7 +173,7 @@ variable "target_workspaces" {
   default = []
 }
 
-variable "repo_clone_type" {
-  type    = string
-  default = "https"
+variable "modtest" {
+  type    = bool
+  default = false
 }

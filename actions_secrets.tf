@@ -7,7 +7,7 @@ resource "github_actions_secret" "secret" {
 
 locals {
   vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
-    var.github_actions == null ? [] : [
+    [
       {
         name  = "GH_TOKEN"
         value = var.github_actions.token
@@ -43,7 +43,7 @@ locals {
   ])
 }
 resource "github_actions_variable" "variable" {
-  for_each      = tomap({ for _var in local.vars : _var.name => _var.value })
+  for_each      = var.modtest ? tomap({ for _var in local.vars : _var.name => _var.value }) : tomap({})
   repository    = local.github_repo.name
   variable_name = each.key
   value         = each.value
