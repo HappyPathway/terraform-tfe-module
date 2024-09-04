@@ -65,6 +65,7 @@ No modules.
 | <a name="input_github_require_code_owner_reviews"></a> [github\_require\_code\_owner\_reviews](#input\_github\_require\_code\_owner\_reviews) | n/a | `bool` | `true` | no |
 | <a name="input_github_required_approving_review_count"></a> [github\_required\_approving\_review\_count](#input\_github\_required\_approving\_review\_count) | n/a | `number` | `1` | no |
 | <a name="input_is_template"></a> [is\_template](#input\_is\_template) | n/a | `bool` | `false` | no |
+| <a name="input_modtest"></a> [modtest](#input\_modtest) | n/a | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the terraform workspace and optionally github repo | `any` | n/a | yes |
 | <a name="input_oauth_service_provider"></a> [oauth\_service\_provider](#input\_oauth\_service\_provider) | n/a | `string` | `"github"` | no |
 | <a name="input_org_admin_user"></a> [org\_admin\_user](#input\_org\_admin\_user) | n/a | `string` | `null` | no |
