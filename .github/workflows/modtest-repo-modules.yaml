@@ -15,7 +15,7 @@ jobs:
       repo_clone_type: https
       mod_source: module/tfe
 
-      github_server: ${{vars.GITHUB_SERVER}}
+      github_server: ${{vars.GH_SERVER}}
       github_org:  ${{ github.repository_owner }} 
       branch: ${{ github.head_ref }}
       terraform_version: ${{vars.TERRAFORM_VERSION}}
