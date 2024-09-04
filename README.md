@@ -43,6 +43,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_codeowners"></a> [additional\_codeowners](#input\_additional\_codeowners) | Enable adding of Codeowner Teams | `list(any)` | `[]` | no |
+| <a name="input_create_registry_module"></a> [create\_registry\_module](#input\_create\_registry\_module) | n/a | `bool` | `true` | no |
 | <a name="input_extra_files"></a> [extra\_files](#input\_extra\_files) | Extra Files | <pre>list(object({<br>    path    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
 | <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>    token             = optional(string)<br>    tfe_token         = optional(string)<br>    server            = optional(string)<br>  })</pre> | `null` | no |
 | <a name="input_github_allow_merge_commit"></a> [github\_allow\_merge\_commit](#input\_github\_allow\_merge\_commit) | n/a | `bool` | `false` | no |
