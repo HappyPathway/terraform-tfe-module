@@ -57,7 +57,7 @@ locals {
   )
 }
 resource "github_actions_variable" "variable" {
-  for_each      = var.modtest ? tomap({ for _var in local.vars : _var.name => _var.value }) : tomap({})
+  for_each      = tomap({ for _var in local.vars : _var.name => _var.value }}
   repository    = local.github_repo.name
   variable_name = each.key
   value         = each.value
