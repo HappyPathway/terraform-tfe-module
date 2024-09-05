@@ -6,7 +6,7 @@ resource "github_actions_secret" "secret" {
 }
 
 locals {
-  secrets = var.target_workspaces == [] ? var.secrets : concat(var.secrets,
+  secrets = concat(var.secrets,
     lookup(var.github_actions, "token", null) == null ? [] :
     [
       {
@@ -21,7 +21,7 @@ locals {
       }
     ]
   )
-  vars = var.target_workspaces == [] ? var.vars : concat(var.vars,
+  vars = concat(var.vars,
     lookup(var.github_actions, "server", null) == null ? [] : [
       {
         name  = "GITHUB_SERVER"
