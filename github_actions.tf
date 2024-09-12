@@ -50,8 +50,7 @@ resource "github_repository_file" "action_badges" {
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
-      branch,
-      content
+      branch
     ]
   }
 }
