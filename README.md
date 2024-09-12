@@ -1,6 +1,3 @@
-# terraform-tfe-module
-Terraform Module
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
