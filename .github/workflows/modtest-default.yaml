@@ -20,7 +20,7 @@ jobs:
 
       github_server: ${{vars.GH_SERVER}}
       github_org:  ${{ github.repository_owner }} 
-      branch: ${{ github.head_ref }}
+      branch: ${{ github.head_ref == '' && 'main' ||  github.head_ref }}
       terraform_version: ${{vars.TERRAFORM_VERSION}}
       terraform_api_token_name: ${{ vars.TERRAFORM_API_TOKEN_NAME }}
       terraform_api: ${{vars.TERRAFORM_API}}
