@@ -10,7 +10,7 @@ on:
 jobs:
   modtest:
     if : ${{ github.event_name }} == "pull_request"
-    uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@main
+    uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@google
     with:
       workspace: default
       workspace_repo: module-repos
@@ -28,3 +28,4 @@ jobs:
     secrets:
       TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
