@@ -160,7 +160,7 @@ variable "github_actions" {
     terraform_api     = optional(string, "app.terraform.io")
     token             = optional(string)
     tfe_token         = optional(string)
-    server            = optional(string)
+    server            = optional(string, "github.com")
   })
   default = null
 }
