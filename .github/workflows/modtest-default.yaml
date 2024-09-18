@@ -17,7 +17,7 @@ jobs:
       workspace_branch: main
       repo_clone_type: https
       mod_source: module/tfe
-      varsfile: ${{ github.workspace }}/.defaults
+      varsfile: defaults
       github_server: ${{vars.GH_SERVER}}
       github_org:  ${{ github.repository_owner }} 
       branch: ${{ github.head_ref == '' && 'main' ||  github.head_ref }}
