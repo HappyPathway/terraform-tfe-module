@@ -12,7 +12,7 @@ jobs:
     if : ${{ github.event_name }} == "pull_request"
     uses: HappyPathway/centralized-actions/.github/workflows/modtest.yml@google
     with:
-      workspace: default
+      workspace: happypathway
       workspace_repo: module-repos
       workspace_branch: main
       repo_clone_type: https
