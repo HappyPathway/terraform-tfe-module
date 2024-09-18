@@ -30,7 +30,7 @@ locals {
       }
     ]
   )
-  action_badges = var.github_actions == null ? [
+  action_badges = var.github_actions == null ? [] : [
     for badge in local._action_badges :
     templatefile("${path.module}/templates/badge.tpl",
       {
@@ -39,7 +39,7 @@ locals {
         action_name = badge.name
         server      = var.github_actions.server
     })
-  ] : []
+  ]
 }
 
 resource "github_repository_file" "action_badges" {
@@ -50,7 +50,8 @@ resource "github_repository_file" "action_badges" {
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
-      branch
+      branch,
+      content
     ]
   }
 }
