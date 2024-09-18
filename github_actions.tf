@@ -43,7 +43,7 @@ locals {
 }
 
 resource "github_repository_file" "action_badges" {
-  count = var.github_actions == null ? 0 : 1
+  count               = var.github_actions == null ? 0 : 1
   repository          = local.github_repo.name
   branch              = var.github_default_branch
   file                = "README.md"
