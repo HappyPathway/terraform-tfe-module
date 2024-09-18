@@ -17,7 +17,7 @@ locals {
   vars = concat(var.vars,
     lookup(var.github_actions, "server", null) == null ? [] : [
       {
-        name  = "GITHUB_SERVER"
+        name  = "GH_SERVER"
         value = var.github_actions.server
       }
     ],
