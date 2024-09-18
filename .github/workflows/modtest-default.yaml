@@ -1,6 +1,7 @@
 name: "ModTest: default"
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches:
