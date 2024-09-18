@@ -38,6 +38,7 @@ locals {
         repo_name   = local.github_repo.name,
         action_name = badge.name
         server      = var.github_actions.server
+        org         = var.github_actions.org
     })
   ]
 }
