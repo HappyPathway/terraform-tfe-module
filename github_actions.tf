@@ -44,11 +44,16 @@ locals {
 }
 
 resource "github_repository_file" "action_badges" {
-  count               = var.github_actions == null ? 0 : 1
-  repository          = local.github_repo.name
-  branch              = var.github_default_branch
-  file                = "README.md"
-  content             = join("\n", local.action_badges)
+  count      = var.github_actions == null ? 0 : 1
+  repository = local.github_repo.name
+  branch     = var.github_default_branch
+  file       = "README.md"
+  content = templatefile(
+    "${path.module}/templates/readme.tpl",
+    {
+      badges = join("\n", local.action_badges)
+    }
+  )
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
