@@ -45,6 +45,18 @@ locals {
       {
         name  = "TERRAFORM_API_TOKEN_NAME"
         value = replace(var.github_actions.terraform_api, ".", "_")
+      },
+    ],
+    lookup(var.github_actions, "tfe_token", null) == null ? [] : [
+      {
+        name  = "TFE_TOKEN"
+        value = var.github_actions.tfe_token
+      }
+    ],
+    lookup(var.github_actions, "token", null) == null ? [] : [
+      {
+        name  = "GH_TOKEN"
+        value = var.github_actions.token
       }
     ]
   )
