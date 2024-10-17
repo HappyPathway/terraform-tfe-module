@@ -3,7 +3,7 @@ resource "github_repository_file" "github_actions" {
   repository          = local.github_repo.name
   branch              = var.github_default_branch
   file                = ".github/workflows/terraform.yaml"
-  content             = file("${path.module}/.github/workflows/terraform.yaml")
+  content             = file("${path.module}/terraform.yaml")
   overwrite_on_create = true
   lifecycle {
     ignore_changes = [
