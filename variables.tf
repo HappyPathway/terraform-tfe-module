@@ -190,3 +190,8 @@ variable "mod_source" {
   type    = string
   default = null
 }
+
+variable enforce_prs {
+  type = bool
+  default = true
+}
