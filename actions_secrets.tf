@@ -8,7 +8,7 @@ locals {
         name  = "GH_TOKEN",
         value = var.github_actions.token
       }
-    ], 
+    ],
     # If the TFE token is provided, add it to the secrets list.
     # Combine the provided secrets with additional GitHub Actions tokens if available.
     lookup(var.github_actions, "tfe_token", null) == null ? [] : [
@@ -16,8 +16,8 @@ locals {
         name  = "TFE_TOKEN",
         value = var.github_actions.server
       }
-    ] 
-  )   
+    ]
+  )
 
   vars = concat(var.vars,
     lookup(var.github_actions, "server", null) == null ? [] : [
@@ -25,7 +25,7 @@ locals {
         name  = "GH_SERVER",
         value = var.github_actions.server
       }
-    ], 
+    ],
     # If the GitHub Actions server is provided, add it to the variables list.
     # Add the GitHub Actions username, email, organization, Terraform version, and API to the variables list.
     [
@@ -54,7 +54,7 @@ locals {
         value = replace(var.github_actions.terraform_api, ".", "_")
       },
     ]
-  )  
+  )
 }
 
 resource "github_actions_secret" "secret" {

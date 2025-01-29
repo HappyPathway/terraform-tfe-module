@@ -1,12 +1,23 @@
 # This file defines GitHub Actions workflows and badges for the repository.
 
+locals {
+  inherited_actions_workflows = [{
+    title = "Terraform Validation"
+    name  = "terraform.yaml"
+    },
+    {
+      title = "Terraform Doc"
+      name  = "terraform-doc.yaml"
+  }]
+}
+
 resource "github_repository_file" "github_actions" {
-  count               = var.github_actions == null ? 0 : 1    # Only create this resource if github_actions variable is not null.
-  repository          = local.github_repo.name                # The name of the repository where the file will be created.
-  branch              = var.github_default_branch             # The branch where the file will be created.
-  file                = ".github/workflows/terraform.yaml"    # The path to the file in the repository.
-  content             = file("${path.module}/terraform.yaml") # The content of the file, read from a local file.
-  overwrite_on_create = true                                  # Overwrite the file if it already exists.
+  for_each            = var.github_actions == null ? [] : [for wf in local.inherited_actions_workflows : wf.name] # Only create this resource if github_actions variable is not null.
+  repository          = local.github_repo.name                                                                    # The name of the repository where the file will be created.
+  branch              = var.github_default_branch                                                                 # The branch where the file will be created.
+  file                = ".github/workflows/${each.key}"                                                           # The path to the file in the repository.
+  content             = file("${path.module}/${each.key}")                                                        # The content of the file, read from a local file.
+  overwrite_on_create = true                                                                                      # Overwrite the file if it already exists.
   lifecycle {
     ignore_changes = [
       branch
@@ -17,12 +28,7 @@ resource "github_repository_file" "github_actions" {
 locals {
   mod_source = var.create_registry_module ? "${one(tfe_registry_module.registry-module).name}/${one(tfe_registry_module.registry-module).module_provider}" : var.mod_source # Determine the module source based on whether a registry module is created.
 
-  _action_badges = concat([
-    {
-      name  = "terraform.yaml",
-      title = "Terraform Validation"
-    }
-    ],
+  _action_badges = concat(local.inherited_actions_workflows,
     [
       for workspace in var.target_workspaces :
       {
