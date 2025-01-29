@@ -21,6 +21,7 @@ locals {
 
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
 resource "github_branch_protection" "main" {
+  count          = var.enforce_prs ? 1 : 0
   enforce_admins = var.github_enforce_admins_branch_protection
   pattern        = local.github_repo.default_branch
   repository_id  = local.github_repo.node_id

@@ -160,7 +160,7 @@ variable "github_actions" {
     terraform_api     = optional(string, "app.terraform.io")
     token             = optional(string)
     tfe_token         = optional(string)
-    server            = optional(string)
+    server            = optional(string, "github.com")
   })
   default = null
 }
@@ -189,4 +189,9 @@ variable "create_registry_module" {
 variable "mod_source" {
   type    = string
   default = null
+}
+
+variable "enforce_prs" {
+  type    = bool
+  default = true
 }

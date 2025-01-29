@@ -1,5 +1,8 @@
-# terraform-tfe-module
-Terraform Module Repo
+
+[![Terraform Validation](https://github.com/HappyPathway/terraform-tfe-module/actions/workflows/terraform.yaml/badge.svg)](https://github.com/HappyPathway/terraform-tfe-module/actions/workflows/terraform.yaml)
+
+
+[![Modtest Default](https://github.com/HappyPathway/terraform-tfe-module/actions/workflows/modtest-default.yaml/badge.svg)](https://github.com/HappyPathway/terraform-tfe-module/actions/workflows/modtest-default.yaml)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -26,6 +29,7 @@ No modules.
 | [github_branch_default.default_main_branch](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_default) | resource |
 | [github_branch_protection.main](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/branch_protection) | resource |
 | [github_repository.repo](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository) | resource |
+| [github_repository_file.action_badges](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.codeowners](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.extra_files](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
 | [github_repository_file.github_actions](https://registry.terraform.io/providers/hashicorp/github/latest/docs/resources/repository_file) | resource |
@@ -45,7 +49,7 @@ No modules.
 | <a name="input_additional_codeowners"></a> [additional\_codeowners](#input\_additional\_codeowners) | Enable adding of Codeowner Teams | `list(any)` | `[]` | no |
 | <a name="input_create_registry_module"></a> [create\_registry\_module](#input\_create\_registry\_module) | n/a | `bool` | `true` | no |
 | <a name="input_extra_files"></a> [extra\_files](#input\_extra\_files) | Extra Files | <pre>list(object({<br>    path    = string,<br>    content = string<br>  }))</pre> | `[]` | no |
-| <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>    token             = optional(string)<br>    tfe_token         = optional(string)<br>    server            = optional(string)<br>  })</pre> | `null` | no |
+| <a name="input_github_actions"></a> [github\_actions](#input\_github\_actions) | n/a | <pre>object({<br>    username          = string<br>    email             = string<br>    org               = string<br>    terraform_version = optional(string, "1.9.1")<br>    terraform_api     = optional(string, "app.terraform.io")<br>    token             = optional(string)<br>    tfe_token         = optional(string)<br>    server            = optional(string, "github.com")<br>  })</pre> | `null` | no |
 | <a name="input_github_allow_merge_commit"></a> [github\_allow\_merge\_commit](#input\_github\_allow\_merge\_commit) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_rebase_merge"></a> [github\_allow\_rebase\_merge](#input\_github\_allow\_rebase\_merge) | n/a | `bool` | `false` | no |
 | <a name="input_github_allow_squash_merge"></a> [github\_allow\_squash\_merge](#input\_github\_allow\_squash\_merge) | n/a | `bool` | `true` | no |
