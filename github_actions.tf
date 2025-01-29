@@ -16,7 +16,7 @@ resource "github_repository_file" "github_actions" {
   repository          = local.github_repo.name                                                                           # The name of the repository where the file will be created.
   branch              = var.github_default_branch                                                                        # The branch where the file will be created.
   file                = ".github/workflows/${each.key}"                                                                  # The path to the file in the repository.
-  content             = file("${path.module}/.github/workflows/${each.key}")                                             # The content of the file, read from a local file.
+  content             = file("${path.module}/workflows/${each.key}")                                                     # The content of the file, read from a local file.
   overwrite_on_create = true                                                                                             # Overwrite the file if it already exists.
   lifecycle {
     ignore_changes = [
