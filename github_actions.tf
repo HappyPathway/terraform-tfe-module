@@ -12,12 +12,12 @@ locals {
 }
 
 resource "github_repository_file" "github_actions" {
-  for_each            = var.github_actions == null ? [] : [for wf in local.inherited_actions_workflows : wf.name] # Only create this resource if github_actions variable is not null.
-  repository          = local.github_repo.name                                                                    # The name of the repository where the file will be created.
-  branch              = var.github_default_branch                                                                 # The branch where the file will be created.
-  file                = ".github/workflows/${each.key}"                                                           # The path to the file in the repository.
-  content             = file("${path.module}/${each.key}")                                                        # The content of the file, read from a local file.
-  overwrite_on_create = true                                                                                      # Overwrite the file if it already exists.
+  for_each            = toset(var.github_actions == null ? [] : [for wf in local.inherited_actions_workflows : wf.name]) # Only create this resource if github_actions variable is not null.
+  repository          = local.github_repo.name                                                                           # The name of the repository where the file will be created.
+  branch              = var.github_default_branch                                                                        # The branch where the file will be created.
+  file                = ".github/workflows/${each.key}"                                                                  # The path to the file in the repository.
+  content             = file("${path.module}/${each.key}")                                                               # The content of the file, read from a local file.
+  overwrite_on_create = true                                                                                             # Overwrite the file if it already exists.
   lifecycle {
     ignore_changes = [
       branch
