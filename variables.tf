@@ -191,7 +191,7 @@ variable "mod_source" {
   default = null
 }
 
-variable enforce_prs {
-  type = bool
+variable "enforce_prs" {
+  type    = bool
   default = true
 }
