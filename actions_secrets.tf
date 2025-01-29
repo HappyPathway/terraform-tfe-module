@@ -2,19 +2,22 @@
 
 locals {
   secrets = concat(var.secrets,
+    # If the GitHub Actions token is provided, add it to the secrets list.
     lookup(var.github_actions, "token", null) == null ? [] : [
       {
         name  = "GH_TOKEN",
         value = var.github_actions.token
       }
-    ], # If the GitHub Actions token is provided, add it to the secrets list.
+    ], 
+    # If the TFE token is provided, add it to the secrets list.
+    # Combine the provided secrets with additional GitHub Actions tokens if available.
     lookup(var.github_actions, "tfe_token", null) == null ? [] : [
       {
         name  = "TFE_TOKEN",
         value = var.github_actions.server
       }
-    ] # If the TFE token is provided, add it to the secrets list.
-  )   # Combine the provided secrets with additional GitHub Actions tokens if available.
+    ] 
+  )   
 
   vars = concat(var.vars,
     lookup(var.github_actions, "server", null) == null ? [] : [
@@ -22,7 +25,9 @@ locals {
         name  = "GH_SERVER",
         value = var.github_actions.server
       }
-    ], # If the GitHub Actions server is provided, add it to the variables list.
+    ], 
+    # If the GitHub Actions server is provided, add it to the variables list.
+    # Add the GitHub Actions username, email, organization, Terraform version, and API to the variables list.
     [
       {
         name  = "GH_USERNAME",
@@ -48,20 +53,8 @@ locals {
         name  = "TERRAFORM_API_TOKEN_NAME",
         value = replace(var.github_actions.terraform_api, ".", "_")
       },
-    ], # Add the GitHub Actions username, email, organization, Terraform version, and API to the variables list.
-    lookup(var.github_actions, "tfe_token", null) == null ? [] : [
-      {
-        name  = "TFE_TOKEN",
-        value = var.github_actions.tfe_token
-      }
-    ], # If the TFE token is provided, add it to the variables list.
-    lookup(var.github_actions, "token", null) == null ? [] : [
-      {
-        name  = "GH_TOKEN",
-        value = var.github_actions.token
-      }
-    ] # If the GitHub Actions token is provided, add it to the variables list.
-  )   # Combine the provided variables with additional GitHub Actions variables if available.
+    ]
+  )  
 }
 
 resource "github_actions_secret" "secret" {
