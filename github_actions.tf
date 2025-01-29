@@ -8,7 +8,9 @@ resource "github_repository_file" "github_actions" {
   content             = file("${path.module}/terraform.yaml") # The content of the file, read from a local file.
   overwrite_on_create = true                                  # Overwrite the file if it already exists.
   lifecycle {
-    ignore_changes = [branch, content] # Ignore changes to the branch and content attributes.
+    ignore_changes = [
+      branch
+    ]
   }
 }
 
