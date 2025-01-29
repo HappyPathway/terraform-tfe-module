@@ -1,10 +1,11 @@
 # This file is maintained automatically by "terraform init".
+# It locks the provider versions to ensure consistent Terraform runs.
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/github" {
-  version = "6.2.1"
+  version = "6.2.1"  # The version of the GitHub provider.
   hashes = [
-    "h1:ip7024qn1ewDqlNucxh07DHvuhSLZSqtTGewxNLeYYU=",
+    "h1:ip7024qn1ewDqlNucxh07DHvuhSLZSqtTGewxNLeYYU=",  # The hashes of the provider binaries to ensure integrity.
     "h1:rY+q+OhJm90R900HvO05YNH7Tl0EOnbCLAoG+5niLX8=",
     "zh:172aa5141c525174f38504a0d2e69d0d16c0a0b941191b7170fe6ae4d7282e30",
     "zh:1a098b731fa658c808b591d030cc17cc7dfca1bf001c3c32e596f8c1bf980e9f",
@@ -24,9 +25,9 @@ provider "registry.terraform.io/hashicorp/github" {
 }
 
 provider "registry.terraform.io/hashicorp/tfe" {
-  version = "0.55.0"
+  version = "0.55.0"  # The version of the TFE provider.
   hashes = [
-    "h1:+ggypk3/tYLr0Ti8cd0MwqvF/0kP3rrSYB1L4wZIo6o=",
+    "h1:+ggypk3/tYLr0Ti8cd0MwqvF/0kP3rrSYB1L4wZIo6o=",  # The hashes of the provider binaries to ensure integrity.
     "h1:2tG1VWX69tN+kOBuX1znEj4VnZD291eFtBnNpexOIfA=",
     "zh:57e9a87066dc12f1ce6239a9fc1c7f8f0827d6a7abb363b713a185d5c30314e8",
     "zh:736e6941645087d91b48bbbc90c8bb617b4687e82a0128775354a4b837c9e9a5",
